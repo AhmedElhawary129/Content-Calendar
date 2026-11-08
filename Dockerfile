@@ -4,11 +4,11 @@ WORKDIR /app
 
 # Download dependencies first so they are cached between builds
 COPY pom.xml .
-RUN --mount=type=cache,target=/root/.m2 mvn -B -q dependency:go-offline
+RUN mvn -B -q dependency:go-offline
 
 # Build the application
 COPY src ./src
-RUN --mount=type=cache,target=/root/.m2 mvn -B -q package -DskipTests
+RUN mvn -B -q package -DskipTests
 
 # ---------- Stage 2: run the jar ----------
 FROM eclipse-temurin:21-jre-alpine
