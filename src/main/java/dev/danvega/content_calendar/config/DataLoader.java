@@ -3,7 +3,6 @@ package dev.danvega.content_calendar.config;
 import dev.danvega.content_calendar.model.Content;
 import dev.danvega.content_calendar.repository.ContentRepository;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
@@ -25,7 +24,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if (repository.count() > 0) {
+        if (repository.count() == 0) {
             try(InputStream inputStream = TypeReference.class.getResourceAsStream("/data/content.json")) {
                 repository.saveAll(objectMapper.readValue(inputStream, new TypeReference<List<Content>>() {}));
             }

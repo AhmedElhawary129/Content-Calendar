@@ -1,0 +1,12 @@
+# Disk space for the database, so the data survives pod restarts.
+# minikube creates the actual volume automatically (default "standard" storage class).
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
