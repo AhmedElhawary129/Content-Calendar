@@ -29,7 +29,7 @@ public class ContentJdbcTemplateRepository {
                 rs.getObject("date_created", LocalDateTime.class),
                 rs.getObject("date_updated", LocalDateTime.class),
                 rs.getString("url"),
-                rs.getInt("user_id")
+                rs.getObject("user_id", Integer.class)
         );
     }
 
