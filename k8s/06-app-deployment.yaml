@@ -19,7 +19,7 @@ spec:
           command: ["sh", "-c", "until pg_isready -h db -p 5432; do echo waiting for db; sleep 2; done"]
       containers:
         - name: content-calendar
-          image: ahmedelhawary1/content-calendar:6
+          image: ahmedelhawary1/content-calendar:8
           ports:
             - containerPort: 8080
           envFrom:
