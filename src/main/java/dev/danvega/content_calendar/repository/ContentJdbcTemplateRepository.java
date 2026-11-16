@@ -28,7 +28,9 @@ public class ContentJdbcTemplateRepository {
                 Type.valueOf(rs.getString("content_type")),
                 rs.getObject("date_created", LocalDateTime.class),
                 rs.getObject("date_updated", LocalDateTime.class),
-                rs.getString("url"));
+                rs.getString("url"),
+                rs.getInt("user_id")
+        );
     }
 
     public List<Content> getAllContent() {
