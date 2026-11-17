@@ -52,7 +52,7 @@ public class ContentController {
                 content.desc(),
                 content.status(),
                 content.contentType(),
-                content.dateCreated(),
+                LocalDateTime.now(),
                 null,
                 content.url(),
                 user.id()
