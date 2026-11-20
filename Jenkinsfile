@@ -64,10 +64,10 @@ pipeline {
                                                           usernameVariable: 'GH_USER',
                                                           passwordVariable: 'GH_TOKEN')]) {
                             sh '''
-                                sed -i "s|image: $IMAGE:.*|image: $IMAGE:$BUILD_NUMBER|" k8s/06-app-deployment.yaml
+                                sed -i "s|image: $IMAGE:.*|image: $IMAGE:$BUILD_NUMBER|" k8s/05-app-deployment.yaml
                                 git config user.email "jenkins@local"
                                 git config user.name "Jenkins"
-                                git add k8s/06-app-deployment.yaml
+                                git add k8s/05-app-deployment.yaml
                                 git commit -m "ci: update image to $BUILD_NUMBER"
                                 git push https://$GH_USER:$GH_TOKEN@github.com/AhmedElhawary129/Content-Calendar.git HEAD:main
                             '''

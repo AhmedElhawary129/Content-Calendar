@@ -4,13 +4,13 @@ services:
     ports:
         - "5432:5432"
     environment:
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: password
+        POSTGRES_USER: ${POSTGRES_USER:?set POSTGRES_USER in .env}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
     volumes:
-      - pgdata:/var/lib/postgresql   # keeps the data when the container is recreated
+      - pgdata:/var/lib/postgresql
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -25,8 +25,9 @@ services:
       PGHOST: db
       PGPORT: 5432
       PGDATABASE: postgres
-      PGUSER: postgres
-      PGPASSWORD: password
+      PGUSER: ${POSTGRES_USER}
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}
     depends_on:
       db:
         condition: service_healthy

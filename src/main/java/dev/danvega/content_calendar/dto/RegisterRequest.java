@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-// The JSON body the client sends to register a new account
 public record RegisterRequest(
 
         @NotBlank(message = "First name is required")

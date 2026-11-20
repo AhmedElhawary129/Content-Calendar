@@ -30,7 +30,6 @@ public class ContentController {
         this.authGuard = authGuard;
     }
 
-    // make a request and fined all the pieces in te system
     @GetMapping("")
     public List<Content> findAll() {
         return repository.findAll();
