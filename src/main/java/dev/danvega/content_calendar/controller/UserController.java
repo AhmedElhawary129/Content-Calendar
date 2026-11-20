@@ -32,8 +32,10 @@ public class UserController {
     }
 
     @GetMapping("")
-    public List<User> findAll() {
-        return repository.findAll();
+    public List<UserResponse> findAll() {
+        return repository.findAll().stream()
+                .map(UserResponse::from)
+                .toList();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
